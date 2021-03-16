@@ -20,6 +20,30 @@
     </h1>
 
     <div id="library-container"></div>
+
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Add new book</h1>
+
+            <label for="title"><b>Title</b></label>
+            <input type="text" placeholder="Enter title" name="title" required>
+
+            <label for="author"><b>Author</b></label>
+            <input type="text" placeholder="Enter author" name="author" required>
+
+            <label for="pages"><b>Number of pages</b></label>
+            <input type="text" placeholder="Enter number of pages" name="pages" required>
+
+            <label for="read"><b>Have you read this book?</b></label>
+            <select id="read" name="read" required>
+                <option value="incomplete">No</option>
+                <option value="complete">Yes</option>
+            </select>
+
+            <button type="submit" class="btn">Add</button>
+            <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
     
 
     <script src="library.js"></script>

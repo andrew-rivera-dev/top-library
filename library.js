@@ -12,18 +12,10 @@ function addBookToLibrary(book) {
 }
 
 const hp = new Book('Harry Potter', 'JK Rowling', 500, 'Incomplete');
-
 const republic = new Book('Republic', 'Plato', 350, 'Complete');
-
-const two = new Book('Republic', 'Plato', 350, 'Complete');
-const three = new Book('Republic', 'Plato', 350, 'Complete');
-const four = new Book('Republic', 'Plato', 350, 'Complete');
 
 addBookToLibrary(hp);
 addBookToLibrary(republic);
-addBookToLibrary(two);
-addBookToLibrary(three);
-addBookToLibrary(four);
 
 function createBookCard(book) {
     const d = document.createElement('div');
@@ -62,6 +54,15 @@ function updateLibrary(library) {
         let newBook = createBookCard(library[i]);
         libraryContainer.append(newBook);
     }
+}
+
+const addButton = document.getElementById('add-button');
+addButton.addEventListener('click', function() {
+    document.getElementById("myForm").style.display = "block";
+});
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
 }
 
 updateLibrary(myLibrary);
