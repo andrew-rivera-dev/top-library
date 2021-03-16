@@ -17,11 +17,13 @@ const republic = new Book('Republic', 'Plato', 350, 'Complete');
 
 const two = new Book('Republic', 'Plato', 350, 'Complete');
 const three = new Book('Republic', 'Plato', 350, 'Complete');
+const four = new Book('Republic', 'Plato', 350, 'Complete');
 
 addBookToLibrary(hp);
 addBookToLibrary(republic);
 addBookToLibrary(two);
 addBookToLibrary(three);
+addBookToLibrary(four);
 
 function createBookCard(book) {
     const d = document.createElement('div');
