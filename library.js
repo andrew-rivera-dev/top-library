@@ -11,13 +11,12 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-const hp = new Book('Harry Potter', 'JK Rowling', 500, 'not read yet');
+const hp = new Book('Harry Potter', 'JK Rowling', 500, 'Incomplete');
 
-const republic = new Book('Republic', 'Plato', 350, 'read');
+const republic = new Book('Republic', 'Plato', 350, 'Complete');
 
 addBookToLibrary(hp);
-
-console.log(myLibrary);
+addBookToLibrary(republic);
 
 function updateLibrary(library) {
     const libraryContainer = document.getElementById('library-container');
@@ -26,8 +25,12 @@ function updateLibrary(library) {
     for (let i = 0; i < library.length; i++) {
         if (!books.includes(library[i])) {
             let d = document.createElement('div');
-            d.innerHTML = (`${library[i].title}`);
-            libraryContainer.appendChild(d);
+            d.className = 'book';
+
+            for (let key in library[i]) {
+                d.innerHTML += library[i][key] + '\n';
+                libraryContainer.appendChild(d);
+            }
         }   
     }
 }
