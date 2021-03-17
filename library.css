@@ -41,7 +41,7 @@ h1 {
 
 #add-button:hover {
     background-color: #0096eb;
-    transition: background-color 1s;
+    transition: background-color 0.3s;
     cursor: pointer;
 }
 
@@ -140,6 +140,7 @@ h1 {
     width: 480px;
     height: 260px;
     margin: 55px;
+    position: relative;
 }
 
 h3 {
@@ -153,4 +154,24 @@ h3 {
     padding-top: 20px;
     padding-left: 20px;
     vertical-align: middle;
+}
+
+.delete-button {
+    display: flex;
+    width: 30px;
+    font-size: 30px;
+    justify-content: center;
+    background:rgba(255, 255, 255, 0);
+    border: none;
+    color: white;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    outline: none;
+    transition: 0.3s;
+}
+
+
+.delete-button:hover {
+    transform: scale(1.3);
 }
