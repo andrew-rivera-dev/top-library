@@ -12,10 +12,7 @@ function addBookToLibrary(book) {
 }
 
 const hp = new Book('Harry Potter', 'JK Rowling', 500, 'Incomplete');
-const republic = new Book('Republic', 'Plato', 350, 'Complete');
-
 addBookToLibrary(hp);
-addBookToLibrary(republic);
 updateLibrary(myLibrary);
 
 function createBookCard(book) {
@@ -50,19 +47,16 @@ function createBookCard(book) {
 function updateLibrary(library) {
     const libraryContainer = document.getElementById('library-container');
 
-    let col = 1, row = 1;
+    const newElement = library[library.length - 1];
+    const newBook = createBookCard(newElement);
 
-    for (let i = 0; i < library.length; i++) {
-        let newBook = createBookCard(library[i]);
-        libraryContainer.append(newBook);
-        newBook.style.gridColumn = `${col}`;
-        newBook.style.gridRow = `${row}`;
-        col++;
-        if (col > 4) {
-            col = 1;
-            row++;
-        }
-    }
+    const col = library.length % 4;
+    const row = Math.floor((library.length - 1) / 4) + 1;
+        
+    newBook.setAttribute('data-index', library.indexOf(newElement));
+    libraryContainer.append(newBook);
+    newBook.style.gridColumn = `${col}`;
+    newBook.style.gridRow = `${row}`;
 }
 
 const addButton = document.getElementById('add-button');

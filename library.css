@@ -45,7 +45,6 @@ h1 {
     cursor: pointer;
 }
 
-/* The popup form - hidden by default */
 .form-popup {
   display: none;
   position: fixed;
@@ -66,7 +65,6 @@ h1 {
     padding: 0px;
 }
 
-/* Add styles to the form container */
 .form-container {
   max-width: 500px;
   max-height: 1000px;
@@ -74,7 +72,6 @@ h1 {
   background-color: white;
 }
 
-/* Full-width input fields */
 .form-container input[type=text] {
   width: 90%;
   padding: 15px;
@@ -84,30 +81,38 @@ h1 {
   font-size: 16px;
 }
 
-/* When the inputs get focus, do something */
 .form-container input[type=text]:focus {
   background-color: #ddd;
   outline: none;
 }
 
-/* Set a style for the submit/login button */
+#read {
+  width: 100px;
+  font-size: 18px;
+  outline: none;
+  margin-left: 10px;
+  padding-left: 5px;
+}
+
+#form-button-container {
+  display: flex;
+  justify-content: center;
+}
+
 .form-container .btn {
-  background-color: #83da85;
-  color: white;
+  background-color: #ddd;
+  color: black;
   padding: 16px 20px;
+  margin: 10px;
   border: none;
+  border-radius: 8px;
+  font-size: 16px;
   cursor: pointer;
-  width: 100%;
+  width: 40%;
   margin-bottom:10px;
   opacity: 0.8;
 }
 
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: rgb(247, 137, 137);
-}
-
-/* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
