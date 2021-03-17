@@ -67,7 +67,14 @@ function updateLibrary(library) {
 
 const addButton = document.getElementById('add-button');
 addButton.addEventListener('click', function() {
-    document.getElementById('myForm').style.display = 'block';
+    const d = document.getElementById('myForm');
+    d.style.display = 'block';
+
+    const children = document.body.children;
+
+    for (let i = 0; i < children.length; i++) {
+        if (children[i].id !== 'myForm') children[i].classList.add('blur-filter');
+    }
 });
 
 const submitNewBook = document.getElementById('btn-create');
@@ -88,5 +95,11 @@ submitNewBook.addEventListener('click', function() {
 
 
 function closeForm() {
-  document.getElementById('myForm').style.display = 'none';
+    document.getElementById('myForm').style.display = 'none';
+
+    const children = document.body.children;
+
+    for (let i = 0; i < children.length; i++) {
+        if (children[i].classList.contains('blur-filter')) children[i].classList.remove('blur-filter');
+    }
 }
