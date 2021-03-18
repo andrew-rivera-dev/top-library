@@ -11,10 +11,6 @@ function addBookToLibraryArray(book) {
     myLibrary.push(book);
 }
 
-const hp = new Book('Harry Potter', 'JK Rowling', 500, 'Incomplete');
-addBookToLibraryArray(hp);
-addNewBookCard(myLibrary);
-
 function createBookCard(book) {
     const d = document.createElement('div');
     d.className = 'book';
@@ -31,7 +27,6 @@ function createBookCard(book) {
     deleteButton.title = 'Delete book';
     d.appendChild(deleteButton);
 
-    //delete button event listener
     deleteButton.addEventListener('click', function() {
         const parent = deleteButton.parentElement;
         const grandparent = parent.parentElement;
@@ -48,20 +43,42 @@ function createBookCard(book) {
 
     const read = document.createElement('span');
     read.innerHTML = 'Read Status: ' + book.read; 
+    read.classList.add('read-status');
     d.appendChild(read);
+
+    const readStatusLabel = document.createElement('label');
+    readStatusLabel.classList.add('switch');
+    readStatusLabel.title = 'Toggle read status';
+    d.appendChild(readStatusLabel);
+
+    const readStatusInput = document.createElement('input');
+    readStatusInput.type = 'checkbox';
+    readStatusLabel.appendChild(readStatusInput);
+    
+    const readStatusSlider = document.createElement('span');
+    readStatusSlider.classList.add('slider-round');
+    readStatusLabel.appendChild(readStatusSlider);
+
+    if (book.read === 'Complete') readStatusInput.checked = true;
+
+    readStatusInput.addEventListener('change', function() {
+        if (this.checked) {
+            book.read = 'Complete';
+            read.innerHTML = read.innerHTML.replace('Incomplete', 'Complete');
+        } else {
+            book.read = 'Incomplete';
+            read.innerHTML = read.innerHTML.replace('Complete', 'Incomplete');
+        }
+    });
 
     const children = Array.from(d.children);
 
     for (let i = 0; i < children.length; i++) {
-        if (!children[i].classList.contains('delete-button')) children[i].classList.add('book-info');
+        if (!children[i].classList.contains('delete-button') &&
+            !children[i].classList.contains('switch')) children[i].classList.add('book-info');
     }
 
     return d;
-}
-
-function toggleReadStatus(book) {
-    if (book.read === 'Complete') book.read = 'Incomplete';
-    else book.read = 'Complete';
 }
 
 function addNewBookCard(library) {
