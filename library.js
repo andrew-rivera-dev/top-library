@@ -13,7 +13,7 @@ function addBookToLibrary(book) {
 
 const hp = new Book('Harry Potter', 'JK Rowling', 500, 'Incomplete');
 addBookToLibrary(hp);
-pushNewBooks(myLibrary);
+addNewBook(myLibrary);
 
 function createBookCard(book, library) {
     const d = document.createElement('div');
@@ -38,7 +38,6 @@ function createBookCard(book, library) {
         grandparent.removeChild(parent);
 
         library.splice(parent.dataset.index, 1);
-        
     })    
 
     const author = document.createElement('span');
@@ -62,16 +61,11 @@ function createBookCard(book, library) {
     return d;
 }
 
-function pushNewBooks(library) {
+function addNewBook(library) {
     const libraryContainer = document.getElementById('library-container');
-    // const children = libraryContainer.children;
 
-    for (let i = 0; i < library.length; i++) {
-        // if this book is not in children, create a new book card and add it;
-
-        let newBook = createBookCard(library[i], library);
-        libraryContainer.append(newBook);
-    }
+    let newBook = createBookCard(library[library.length - 1], library);
+    libraryContainer.append(newBook);
 }
 
 const addButton = document.getElementById('add-button');
@@ -79,6 +73,10 @@ addButton.addEventListener('click', function() {
     const d = document.getElementById('myForm');
     d.style.display = 'block';
 
+    document.getElementById('form-title').value = '';
+    document.getElementById('form-author').value = '';
+    document.getElementById('form-pages').value = '';
+    
     const children = document.body.children;
 
     for (let i = 0; i < children.length; i++) {
@@ -99,7 +97,7 @@ submitNewBook.addEventListener('click', function() {
 
     const readyNewBook = new Book(cleanedInputs[0], cleanedInputs[1], cleanedInputs[2], cleanedInputs[3]);
     addBookToLibrary(readyNewBook);
-    pushNewBooks(myLibrary);
+    addNewBook(myLibrary);
 });
 
 function closeForm() {
