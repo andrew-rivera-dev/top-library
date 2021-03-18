@@ -7,13 +7,13 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary(book) {
+function addBookToLibraryArray(book) {
     myLibrary.push(book);
 }
 
 const hp = new Book('Harry Potter', 'JK Rowling', 500, 'Incomplete');
-addBookToLibrary(hp);
-addNewBook(myLibrary);
+addBookToLibraryArray(hp);
+addNewBookCard(myLibrary);
 
 function createBookCard(book, library) {
     const d = document.createElement('div');
@@ -36,8 +36,6 @@ function createBookCard(book, library) {
         const parent = deleteButton.parentElement;
         const grandparent = parent.parentElement;
         grandparent.removeChild(parent);
-
-        library.splice(parent.dataset.index, 1);
     })    
 
     const author = document.createElement('span');
@@ -61,7 +59,12 @@ function createBookCard(book, library) {
     return d;
 }
 
-function addNewBook(library) {
+function toggleReadStatus(book) {
+    if (book.read === 'Complete') book.read = 'Incomplete';
+    else book.read = 'Complete';
+}
+
+function addNewBookCard(library) {
     const libraryContainer = document.getElementById('library-container');
 
     let newBook = createBookCard(library[library.length - 1], library);
@@ -76,7 +79,7 @@ addButton.addEventListener('click', function() {
     document.getElementById('form-title').value = '';
     document.getElementById('form-author').value = '';
     document.getElementById('form-pages').value = '';
-    
+
     const children = document.body.children;
 
     for (let i = 0; i < children.length; i++) {
@@ -86,7 +89,7 @@ addButton.addEventListener('click', function() {
 
 const submitNewBook = document.getElementById('btn-create');
 submitNewBook.addEventListener('click', function() {
-    let newestBookInputs = document.getElementById('form-container').elements;
+    let newestBookInputs = document.getElementsByClassName('form-info');
     let cleanedInputs = [];
     
     for (let i = 0; i < newestBookInputs.length; i++) {
@@ -95,9 +98,12 @@ submitNewBook.addEventListener('click', function() {
         }
     }
 
+    if (cleanedInputs.some(x => x === '')) return;
+
     const readyNewBook = new Book(cleanedInputs[0], cleanedInputs[1], cleanedInputs[2], cleanedInputs[3]);
-    addBookToLibrary(readyNewBook);
-    addNewBook(myLibrary);
+    addBookToLibraryArray(readyNewBook);
+    addNewBookCard(myLibrary);
+    closeForm();
 });
 
 function closeForm() {
