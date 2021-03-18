@@ -79,7 +79,7 @@ h1 {
   border: none;
   background: #f1f1f1;
   font-size: 16px;
-}
+ }
 
 .form-container input[type=text]:focus {
   background-color: #ddd;

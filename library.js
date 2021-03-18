@@ -18,6 +18,8 @@ pushNewBooks(myLibrary);
 function createBookCard(book, library) {
     const d = document.createElement('div');
     d.className = 'book';
+    d.style.gridAutoColumns = 'auto';
+    d.style.gridAutoRows = 'auto';
 
     const title = document.createElement('h3');
     title.innerHTML =  book.title; 
@@ -26,6 +28,7 @@ function createBookCard(book, library) {
     const deleteButton = document.createElement('button');
     deleteButton.innerHTML = '<i class="fa fa-close"></i>';
     deleteButton.classList.add('delete-button');
+    deleteButton.title = 'Delete book';
     d.appendChild(deleteButton);
 
     //delete button event listener
@@ -64,12 +67,10 @@ function pushNewBooks(library) {
     // const children = libraryContainer.children;
 
     for (let i = 0; i < library.length; i++) {
-        // if (children[i].dataset.index === library.indexOf(library[i])) return 'hi';
+        // if this book is not in children, create a new book card and add it;
 
         let newBook = createBookCard(library[i], library);
         libraryContainer.append(newBook);
-        newBook.style.gridAutoColumns = 'auto';
-        newBook.style.gridAutoRows = 'auto';
     }
 }
 
