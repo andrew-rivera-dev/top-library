@@ -15,7 +15,7 @@ const hp = new Book('Harry Potter', 'JK Rowling', 500, 'Incomplete');
 addBookToLibraryArray(hp);
 addNewBookCard(myLibrary);
 
-function createBookCard(book, library) {
+function createBookCard(book) {
     const d = document.createElement('div');
     d.className = 'book';
     d.style.gridAutoColumns = 'auto';
@@ -67,7 +67,7 @@ function toggleReadStatus(book) {
 function addNewBookCard(library) {
     const libraryContainer = document.getElementById('library-container');
 
-    let newBook = createBookCard(library[library.length - 1], library);
+    let newBook = createBookCard(library[library.length - 1]);
     libraryContainer.append(newBook);
 }
 
@@ -101,6 +101,7 @@ submitNewBook.addEventListener('click', function() {
     if (cleanedInputs.some(x => x === '')) return;
 
     const readyNewBook = new Book(cleanedInputs[0], cleanedInputs[1], cleanedInputs[2], cleanedInputs[3]);
+    console.log(newestBookInputs);
     addBookToLibraryArray(readyNewBook);
     addNewBookCard(myLibrary);
     closeForm();
